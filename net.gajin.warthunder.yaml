@@ -1,0 +1,30 @@
+app-id: net.gajin.warthunder
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: launcher
+finish-args:
+  - --socket=x11
+  - --socket=fallback-x11
+#  - --share=ipc
+  - --device=dri
+  # =all for controller support
+  - --device=all
+  - --socket=pulseaudio
+
+modules:
+  - name: warthunder
+    buildsystem: simple
+    build-commands: 
+      - install -D ./* -t /app/bin/
+#      - install -D ./* -t /app/files
+#      - mkdir /app/bin
+#      - touch /app/bin/launcher
+#      - echo "cd /app/files/ && ./launcher" > /app/bin/launcher
+#      - chmod +x /app/bin/launcher
+#    post-install:
+#      -
+    sources:
+      - type: archive
+        url: https://cdnnow-distr.gaijinent.com/wt_launcher_linux_0.9.4.74.tar.gz
+        sha256: 68d4e26c170091f9ede93730f8d258e72af5f325c256ffa6e44fdb9ad0c7d638

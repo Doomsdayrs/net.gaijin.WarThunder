@@ -1,8 +1,8 @@
-app-id: net.gajin.warthunder
+app-id: net.gaijin.warthunder
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
-command: launcher
+command: run.sh
 finish-args:
   - --socket=x11
   - --socket=fallback-x11
@@ -16,8 +16,10 @@ modules:
   - name: warthunder
     buildsystem: simple
     build-commands: 
-      - install -D ./* -t /app/bin/
-#      - install -D ./* -t /app/files
+#      - install -D ./* -t /app/bin/
+      - install -D ./* -t /app/files/
+      - mkdir /app/bin/
+      - install -D ./run.sh /app/bin/
 #      - mkdir /app/bin
 #      - touch /app/bin/launcher
 #      - echo "cd /app/files/ && ./launcher" > /app/bin/launcher
@@ -28,3 +30,7 @@ modules:
       - type: archive
         url: https://cdnnow-distr.gaijinent.com/wt_launcher_linux_0.9.4.74.tar.gz
         sha256: 68d4e26c170091f9ede93730f8d258e72af5f325c256ffa6e44fdb9ad0c7d638
+      - type: file
+        path: run.sh
+
+
